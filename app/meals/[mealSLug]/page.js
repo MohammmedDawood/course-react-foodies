@@ -1,10 +1,14 @@
 import Image from "next/image";
 import { getMealBySlug } from "@/lib/meals";
 import classes from "./page.module.css";
+import { notFound } from "next/navigation";
 
 async function MealDetailsPage({ params }) {
   const meal = getMealBySlug(params.mealSlug);
 
+  if (!meal) {
+    return notFound();
+  }
   return (
     <>
       <header className={classes.header}>
