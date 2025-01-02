@@ -2,7 +2,7 @@ import Link from "next/link";
 import logoImg from "@/public/images/logo.png";
 import classes from "./main-header.module.css";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+// import { usePathname } from "next/navigation";
 import NavLink from "./nav-link";
 
 function MainHeader() {

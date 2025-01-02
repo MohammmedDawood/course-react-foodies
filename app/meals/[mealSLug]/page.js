@@ -4,7 +4,8 @@ import classes from "./page.module.css";
 import { notFound } from "next/navigation";
 
 async function MealDetailsPage({ params }) {
-  const meal = getMealBySlug(params.mealSlug);
+  const { mealSlug } = await params;
+  const meal = getMealBySlug(mealSlug);
 
   if (!meal) {
     return notFound();
@@ -27,7 +28,7 @@ async function MealDetailsPage({ params }) {
         <p
           className={classes.instructions}
           dangerouslySetInnerHTML={{
-            __html: meal.instructions.replace(/\n/g, "<br>"),
+            __html: meal.instructions.replace(/\n/g, "<br />"),
           }}
         ></p>
       </main>
