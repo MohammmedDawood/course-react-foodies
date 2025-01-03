@@ -3,13 +3,22 @@ import { getMealBySlug } from "@/lib/meals";
 import classes from "./page.module.css";
 import { notFound } from "next/navigation";
 
+export async function generateMetadata({ params }) {
+  const { mealSlug } = await params;
+  const meal = getMealBySlug(mealSlug);
+  if (!meal) {
+    return notFound();
+  }
+  return {
+    title: meal.title,
+    description: meal.summary,
+  };
+}
+
 async function MealDetailsPage({ params }) {
   const { mealSlug } = await params;
   const meal = getMealBySlug(mealSlug);
 
-  if (!meal) {
-    return notFound();
-  }
   return (
     <>
       <header className={classes.header}>
